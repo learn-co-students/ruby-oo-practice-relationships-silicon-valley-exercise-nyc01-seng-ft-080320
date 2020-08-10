@@ -21,6 +21,28 @@ class Startup
         self.domain = domain
     end
 
+    def sign_contract(capitalist, investment_type, investment)
+        FundingRound.new(self, capitalist, investment_type, investment)
+    end
+
+    def num_funding_rounds
+        FundingRound.all.filter do |funding|
+            funding.startup == self
+        end
+    end
+    
+    def investors
+        self.num_funding_rounds.map do |round|
+            round.venture_capitalist
+        end.uniq
+    end
+
+    def big_investors
+        self.investors.filter do |investor|
+            VentureCapitalist.tres_commas_club.include?(investor)
+        end
+    end
+
     ## Class methods section
     def self.all
         @@all

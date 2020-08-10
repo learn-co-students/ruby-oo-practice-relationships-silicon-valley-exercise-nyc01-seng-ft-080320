@@ -1,7 +1,7 @@
 class FundingRound
     ## Class variables section
     @@all = []
-
+    @@INVESTMENT_TYPES = ["Angel", "Pre-Seed", "Seed", "Series A", "Series B", "Series C"]
     ## Attrs definition section
     attr_accessor :startup, :venture_capitalist, :type, :investment
     #attr_reader :founder, :domain
@@ -20,6 +20,10 @@ class FundingRound
     ## Class methods section
     def self.all
         @@all
+    end
+
+    def self.investment_types
+        @@INVESTMENT_TYPES
     end
 
     ## Custom getters / setter section
